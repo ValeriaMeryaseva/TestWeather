@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/default_margin"
-    android:paddingBottom="@dimen/fab_margin"
     android:orientation="horizontal"
+    android:paddingBottom="@dimen/fab_margin"
     android:paddingTop="@dimen/fab_margin">
 
     <TextView
         android:id="@+id/city_name"
         style="@style/WeatherText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_centerVertical="true"
         tools:text="Ulyanovsk" />
 
     <TextView
         android:id="@+id/temperature"
         style="@style/WeatherText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:gravity="right"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_toLeftOf="@+id/delete_button"
         tools:text="-26" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/delete_button"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:drawable/ic_delete" />
+
+</RelativeLayout>

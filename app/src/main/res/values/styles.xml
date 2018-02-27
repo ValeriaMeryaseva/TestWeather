@@ -23,4 +23,9 @@
         <item name="android:textSize">@dimen/weather_text_font</item>
     </style>
 
+    <style name="TemperatureText">
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/temperature_text_font</item>
+    </style>
 </resources>

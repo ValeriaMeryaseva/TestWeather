@@ -1,15 +1,21 @@
 package com.example.lera.weather.cityList;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lera.weather.City;
 import com.example.lera.weather.R;
+import com.example.lera.weather.WeatherActivity;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class CityListAdapter extends BaseAdapter {
@@ -50,6 +56,8 @@ public class CityListAdapter extends BaseAdapter {
 
         ((TextView) view.findViewById(R.id.city_name)).setText(city.getName());
 //        ((TextView) view.findViewById(R.id.temperature)).setText(city.getWeather().temperature);
+        view.setOnClickListener(onClickListener);
+        view.setTag(position);
 
         return view;
     }
@@ -58,4 +66,16 @@ public class CityListAdapter extends BaseAdapter {
         return ((City) getItem(position));
     }
 
+    Button.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            City city = getCity((Integer) v.getTag());
+
+            Intent intent = new Intent(mContext, WeatherActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("cityName", city.getName());
+
+            mContext.startActivity(intent);
+        }
+    };
 }
