@@ -9,17 +9,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-public class LoadWeather {
+public class LoadWeatherService {
 
     private static final String START_URL = "http://api.openweathermap.org/data/2.5/weather?q=";
     private static final String METRIC_PARAMS_URL = "&units=metric&APPID=";
     private static final String API_KEY = "a9ef9c7e94b04ebd4689a84570e67559";
 
     public static Weather loadWeather(String cityName) throws IOException, JSONException {
-        Weather weather = new Weather();
+        Weather weather = new Weather("", "");
 
         try {
             URL url = new URL(START_URL + cityName + METRIC_PARAMS_URL + API_KEY);

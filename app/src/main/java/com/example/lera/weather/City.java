@@ -6,9 +6,10 @@ public class City {
     private int code;
     private Weather weather;
 
-    public City(String name, int code){
+    public City(String name, int code, Weather weather) {
         this.name = name;
         this.code = code;
+        this.weather = weather;
     }
 
     public String getName() {

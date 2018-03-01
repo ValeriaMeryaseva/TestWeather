@@ -1,6 +1,5 @@
 package com.example.lera.weather.cityList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,11 +13,11 @@ import com.example.lera.weather.City;
 import com.example.lera.weather.R;
 import com.example.lera.weather.WeatherActivity;
 
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public class CityListAdapter extends BaseAdapter {
+
+    public final static String CITY_NAME_KEY = "city_name_key";
 
     private List<City> mCities;
     private Context mContext;
@@ -55,7 +54,7 @@ public class CityListAdapter extends BaseAdapter {
         City city = getCity(position);
 
         ((TextView) view.findViewById(R.id.city_name)).setText(city.getName());
-//        ((TextView) view.findViewById(R.id.temperature)).setText(city.getWeather().temperature);
+        ((TextView) view.findViewById(R.id.temperature)).setText(city.getWeather().temperature);
         view.setOnClickListener(onClickListener);
         view.setTag(position);
 
@@ -73,7 +72,7 @@ public class CityListAdapter extends BaseAdapter {
 
             Intent intent = new Intent(mContext, WeatherActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("cityName", city.getName());
+            intent.putExtra(CITY_NAME_KEY, city.getName());
 
             mContext.startActivity(intent);
         }

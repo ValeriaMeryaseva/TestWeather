@@ -5,17 +5,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.lera.weather.cityList.CityListAdapter;
-import com.example.lera.weather.net.LoadWeather;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         List<City> list = new ArrayList<>();
-        list.add(new City("Ulyanovsk", -25));
-        list.add(new City("Samara", -18));
+        list.add(new City("Ulyanovsk", 0, new Weather("-25 ℃", "")));
+        list.add(new City("Samara", 1, new Weather("-18 ℃", "")));
+        list.add(new City("Kazan", 2, new Weather("-23 ℃", "")));
+        list.add(new City("Moscow", 3, new Weather("-22 ℃", "")));
 
         ListView listView = findViewById(R.id.list_view);
         listView.setAdapter(new CityListAdapter(getApplicationContext(), list));
@@ -42,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "test", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
-                Thread thread = new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        try {
-                            LoadWeather.loadWeather("New York");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                thread.start();
             }
         });
     }
