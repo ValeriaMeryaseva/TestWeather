@@ -1,4 +1,4 @@
-package com.example.lera.weather.cityList;
+package com.example.lera.weather;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.lera.weather.City;
-import com.example.lera.weather.R;
-import com.example.lera.weather.WeatherActivity;
+import com.example.lera.weather.db.WeatherModel;
 
 import java.util.List;
 
@@ -19,22 +17,22 @@ public class CityListAdapter extends BaseAdapter {
 
     public final static String CITY_NAME_KEY = "city_name_key";
 
-    private List<City> mCities;
+    private List<WeatherModel> weatherModelList;
     private Context mContext;
 
-    public CityListAdapter(Context context, List<City> cities) {
-        this.mCities = cities;
+    public CityListAdapter(Context context, List<WeatherModel> weatherModelList) {
+        this.weatherModelList = weatherModelList;
         this.mContext = context;
     }
 
     @Override
     public int getCount() {
-        return mCities.size();
+        return weatherModelList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mCities.get(position);
+        return weatherModelList.get(position);
     }
 
     @Override
@@ -51,28 +49,24 @@ public class CityListAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.city_list_item, parent, false);
         }
 
-        City city = getCity(position);
+        WeatherModel weatherModel = weatherModelList.get(position);
 
-        ((TextView) view.findViewById(R.id.city_name)).setText(city.getName());
-        ((TextView) view.findViewById(R.id.temperature)).setText(city.getWeather().temperature);
+        ((TextView) view.findViewById(R.id.city_name)).setText(weatherModel.getCity());
+        ((TextView) view.findViewById(R.id.temperature)).setText(weatherModel.getTemperature());
         view.setOnClickListener(onClickListener);
         view.setTag(position);
 
         return view;
     }
 
-    City getCity(int position) {
-        return ((City) getItem(position));
-    }
-
     Button.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            City city = getCity((Integer) v.getTag());
+            WeatherModel weatherModel = weatherModelList.get((Integer) v.getTag());
 
             Intent intent = new Intent(mContext, WeatherActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(CITY_NAME_KEY, city.getName());
+            intent.putExtra(CITY_NAME_KEY, weatherModel.getCity());
 
             mContext.startActivity(intent);
         }

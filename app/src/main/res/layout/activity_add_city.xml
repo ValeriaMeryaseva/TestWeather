@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lera.weather.AddCityActivity">
+
+    <EditText
+        android:id="@+id/addCityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="City" />
+
+    <Button
+        android:id="@+id/addCityButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorDark"
+        android:onClick="onAddCityButtonClick" />
+
+
+</LinearLayout>

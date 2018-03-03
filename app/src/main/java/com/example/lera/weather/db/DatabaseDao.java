@@ -3,6 +3,7 @@ package com.example.lera.weather.db;
 
 import android.content.Context;
 
+import com.yahoo.squidb.android.AndroidOpenHelper;
 import com.yahoo.squidb.data.ISQLiteDatabase;
 import com.yahoo.squidb.data.ISQLiteOpenHelper;
 import com.yahoo.squidb.data.SquidDatabase;
@@ -45,11 +46,11 @@ public class DatabaseDao extends SquidDatabase {
 
     @Override
     protected boolean onUpgrade(ISQLiteDatabase db, int oldVersion, int newVersion) {
-        return false;
+        return true;
     }
 
     @Override
     protected ISQLiteOpenHelper createOpenHelper(String databaseName, OpenHelperDelegate delegate, int version) {
-        return null;
+        return new AndroidOpenHelper(context,databaseName,delegate,version);
     }
 }

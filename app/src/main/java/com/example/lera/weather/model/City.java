@@ -1,4 +1,4 @@
-package com.example.lera.weather;
+package com.example.lera.weather.model;
 
 public class City {
 

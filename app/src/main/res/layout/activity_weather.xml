@@ -26,13 +26,27 @@
         android:layout_marginTop="@dimen/default_margin"
         tools:text="-23 C" />
 
+    <TextView
+        android:id="@+id/forecast_title"
+        style="@style/WeatherText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="@string/forecast" />
+
     <ListView
-        android:id="@+id/weather_by_days"
+        android:id="@+id/forecast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="8dp"
-        tools:listitem="@layout/city_list_item" />
+        tools:listitem="@layout/day_forecast_item" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/colorDark"
+        android:onClick="onRemoveCityClick" />
 </LinearLayout>
