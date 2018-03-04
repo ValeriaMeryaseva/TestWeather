@@ -1,5 +1,9 @@
 package com.example.lera.weather.net;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.example.lera.weather.model.DayWeatherForecast;
 import com.example.lera.weather.model.Weather;
 
@@ -75,5 +79,15 @@ public class LoadWeatherService {
             e.printStackTrace();
         }
         return dayForecast;
+    }
+
+    public static boolean isConnectedToInternet(Context context) {
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

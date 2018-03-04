@@ -6,6 +6,13 @@
     android:orientation="vertical"
     tools:context="com.example.lera.weather.WeatherActivity">
 
+    <Button
+        android:layout_width="@dimen/button_height"
+        android:layout_height="@dimen/button_height"
+        android:layout_gravity="right"
+        android:background="@android:drawable/ic_delete"
+        android:onClick="onRemoveCityClick" />
+
     <TextView
         android:id="@+id/city_name"
         style="@style/WeatherText"
@@ -13,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
         tools:text="Moscow" />
 
     <TextView
@@ -43,10 +49,4 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="8dp"
         tools:listitem="@layout/day_forecast_item" />
-
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@color/colorDark"
-        android:onClick="onRemoveCityClick" />
 </LinearLayout>

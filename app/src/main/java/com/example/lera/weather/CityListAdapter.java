@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lera.weather.db.WeatherModel;
+import com.example.lera.weather.net.LoadWeatherService;
 
 import java.util.List;
 
@@ -62,13 +64,17 @@ public class CityListAdapter extends BaseAdapter {
     Button.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            WeatherModel weatherModel = weatherModelList.get((Integer) v.getTag());
+            if (!LoadWeatherService.isConnectedToInternet(mContext)) {
+                Toast.makeText(mContext, "No connection", Toast.LENGTH_SHORT).show();
+            } else {
+                WeatherModel weatherModel = weatherModelList.get((Integer) v.getTag());
 
-            Intent intent = new Intent(mContext, WeatherActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(CITY_NAME_KEY, weatherModel.getCity());
+                Intent intent = new Intent(mContext, WeatherActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(CITY_NAME_KEY, weatherModel.getCity());
 
-            mContext.startActivity(intent);
+                mContext.startActivity(intent);
+            }
         }
     };
 }
